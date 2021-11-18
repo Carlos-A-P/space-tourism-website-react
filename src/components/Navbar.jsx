@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/shared/logo.svg";
-import Hamburger_Menu from "./assets/shared/icon-hamburger.svg";
-import Close_Menu from "./assets/shared/icon-close.svg";
+import Hamburger_Menu from "../assets/shared/icon-hamburger.svg";
+import Close_Menu from "../assets/shared/icon-close.svg";
 
-export default function navbar() {
-	const [click, setClick] = useState(false);
+export default function Navbar() {
+	const [openLinks, setOpenLinks] = useState(false);
+
+	const toggleNavbar = () => {
+		setOpenLinks(!openLinks);
+	};
 	return (
 		<>
 			<header>
 				<div>
 					<img src={logo} alt="space tourism logo" />
 				</div>
-				<button className="menu-icon" aria-controls="primary-navigation">
+				<button
+					onClick={toggleNavbar}
+					className="menu-icon"
+					aria-controls="primary-navigation"
+				>
 					<span class="sr-only" aria-expanded="false">
 						Menu
 					</span>
