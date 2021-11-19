@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import Navbar from "../components/Navbar";
 
-function home() {
+function Home(props) {
+	useEffect(() => {
+		props.changeBG("home");
+	}, []);
 	return (
 		<div>
 			{/* <Navbar /> */}
@@ -29,4 +32,4 @@ function home() {
 	);
 }
 
-export default home;
+export default Home;

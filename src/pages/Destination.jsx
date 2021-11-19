@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import Navbar from "../components/Navbar";
 import Moon_image from "../assets/destination/image-moon.png";
 import Moon_webp from "../assets/destination/image-moon.webp";
 
-function Destination() {
+function Destination(props) {
+	useEffect(() => {
+		props.changeBG("destination");
+	});
 	return (
 		<div className="">
 			{/* <Navbar /> */}

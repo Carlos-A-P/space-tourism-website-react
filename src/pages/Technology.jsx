@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import Navbar from "../components/Navbar";
 import Vehicle_png from "../assets/technology/image-launch-vehicle-portrait.jpg";
 import Vehicle_webp from "../assets/technology/image-launch-vehicle-portrait.jpg";
 
-function Technology() {
+function Technology(props) {
+	useEffect(() => {
+		props.changeBG("technology");
+	});
 	return (
 		<div>
 			{/* <Navbar /> */}

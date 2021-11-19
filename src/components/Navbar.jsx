@@ -10,37 +10,36 @@ export default function Navbar() {
 	const toggleNavbar = () => {
 		setOpenLinks(!openLinks);
 	};
+
 	return (
-		<>
-			<header>
-				<div>
-					<img src={logo} alt="space tourism logo" />
-				</div>
-				<button
-					onClick={toggleNavbar}
-					className="menu-icon"
-					aria-controls="primary-navigation"
-				>
-					<span class="sr-only" aria-expanded="false">
-						Menu
-					</span>
-				</button>
-				<nav className="navbar">
-					<Link to="/">
-						{/* the aria-hidden is so that span won't be read to the screen reader */}
-						<span aria-hidden="true">00</span>Home
-					</Link>
-					<Link to="/destination">
-						<span aria-hidden="true">01</span>Destination
-					</Link>
-					<Link to="/crew">
-						<span aria-hidden="true">02</span>Crew
-					</Link>
-					<Link to="/technology">
-						<span aria-hidden="true">03</span>Technology
-					</Link>
-				</nav>
-			</header>
-		</>
+		<header>
+			<div>
+				<img src={logo} alt="space tourism logo" />
+			</div>
+			<button
+				onClick={toggleNavbar}
+				className="menu-icon"
+				aria-controls="primary-navigation"
+			>
+				<span class="sr-only" aria-expanded="false">
+					Menu
+				</span>
+			</button>
+			<nav className="navbar">
+				<Link to="/">
+					{/* the aria-hidden is so that span won't be read to the screen reader */}
+					<span aria-hidden="true">00</span>Home
+				</Link>
+				<Link to="/destination">
+					<span aria-hidden="true">01</span>Destination
+				</Link>
+				<Link to="/crew">
+					<span aria-hidden="true">02</span>Crew
+				</Link>
+				<Link to="/technology">
+					<span aria-hidden="true">03</span>Technology
+				</Link>
+			</nav>
+		</header>
 	);
 }
