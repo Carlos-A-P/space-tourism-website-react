@@ -8,13 +8,13 @@ import Technology from "./pages/Technology";
 
 function App() {
 	return (
-		<Router className="App">
+		<Router className="App Home">
 			<Header />
 			<Routes>
-				<Route path="/" exact component={Home} />
-				<Route path="/Destination" exact component={Destination} />
-				<Route path="/Crew" exact component={Crew} />
-				<Route path="/Technology" exact component={Technology} />
+				<Route path="/" element={<Home />} />
+				<Route path="/destination" element={<Destination />} />
+				<Route path="/crew" element={<Crew />} />
+				<Route path="/technology" element={<Technology />} />
 			</Routes>
 		</Router>
 	);

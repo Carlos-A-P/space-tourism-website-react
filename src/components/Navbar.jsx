@@ -26,17 +26,17 @@ export default function Navbar() {
 					</span>
 				</button>
 				<nav className="navbar">
-					<Link to="">
+					<Link to="/">
 						{/* the aria-hidden is so that span won't be read to the screen reader */}
 						<span aria-hidden="true">00</span>Home
 					</Link>
-					<Link to="">
+					<Link to="/destination">
 						<span aria-hidden="true">01</span>Destination
 					</Link>
-					<Link to="">
+					<Link to="/crew">
 						<span aria-hidden="true">02</span>Crew
 					</Link>
-					<Link to="">
+					<Link to="/technology">
 						<span aria-hidden="true">03</span>Technology
 					</Link>
 				</nav>
