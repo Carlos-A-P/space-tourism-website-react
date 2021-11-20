@@ -26,19 +26,29 @@ export default function Navbar() {
 				</span>
 			</button>
 			<nav className="navbar">
-				<Link to="/">
-					{/* the aria-hidden is so that span won't be read to the screen reader */}
-					<span aria-hidden="true">00</span>Home
-				</Link>
-				<Link to="/destination">
-					<span aria-hidden="true">01</span>Destination
-				</Link>
-				<Link to="/crew">
-					<span aria-hidden="true">02</span>Crew
-				</Link>
-				<Link to="/technology">
-					<span aria-hidden="true">03</span>Technology
-				</Link>
+				<ul className="primary-navigation underline-indicator">
+					<li>
+						<Link to="/">
+							{/* the aria-hidden is so that span won't be read to the screen reader */}
+							<span aria-hidden="true">00</span>Home
+						</Link>
+					</li>
+					<li>
+						<Link to="/destination">
+							<span aria-hidden="true">01</span>Destination
+						</Link>
+					</li>
+					<li>
+						<Link to="/crew">
+							<span aria-hidden="true">02</span>Crew
+						</Link>
+					</li>
+					<li>
+						<Link to="/technology">
+							<span aria-hidden="true">03</span>Technology
+						</Link>
+					</li>
+				</ul>
 			</nav>
 		</header>
 	);

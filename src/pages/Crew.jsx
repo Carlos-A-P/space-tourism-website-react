@@ -6,9 +6,7 @@ import Douglas_webp from "../assets/crew/image-douglas-hurley.webp";
 function Crew(props) {
 	useEffect(() => {
 		props.changeBG("crew");
-	}, []);
-
-	console.log(props);
+	});
 	return (
 		<main className="">
 			<div className="left">

@@ -1,8 +1,8 @@
-@use "navbar";
-@use "home";
-@use "destination";
-@use "crew";
-@use "technology";
+@import "navbar";
+@import "home";
+@import "media-queries";
+@import "./Variables/variables";
+@import "utility-classes";
 
 /* https://piccalil.li/blog/a-modern-css-reset/ */
 
@@ -22,4 +22,31 @@ h5,
 h6,
 p {
 	font-weight: 400;
+}
+
+/* set up the body */
+body {
+	font-family: inherit;
+	font-size: $fs-400;
+	color: $clr-white;
+	background-color: $clr-dark;
+	line-height: 1.5;
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: min-content 1fr;
+	overflow-x: hidden;
+}
+
+img,
+picture {
+	max-width: 100%;
+	display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+	font: inherit;
 }
