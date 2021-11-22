@@ -1,1 +1,14 @@
 @use "./Variables/variables";
+@import "./media-queries";
+
+.home {
+	background-image: url(../assets/home/background-home-mobile.jpg);
+
+	@include tablet {
+		background-image: url(../assets/home/background-home-tablet.jpg);
+		background-position: center center;
+	}
+	@include desktop {
+		background-image: url(../assets/home/background-home-desktop.jpg);
+	}
+}

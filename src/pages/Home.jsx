@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
-// import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 function Home(props) {
 	useEffect(() => {
 		props.changeBG("home");
 	});
 	return (
-		<main id="main" className="">
+		<main id="main" className="grid-container grid-container--home">
 			<div>
-				<h1 className="">
+				<h1 className="text-accent fs-500 ff-sans-cond uppercase">
 					So, you want to travel to
-					<span className="">Space</span>
+					<span className="fs-900 ff-serif text-white letter-spacing-1 d-block">
+						Space
+					</span>
 				</h1>
 
 				<p>
@@ -21,9 +23,12 @@ function Home(props) {
 				</p>
 			</div>
 			<div>
-				<a href="destination.html" className="">
+				<Link
+					to="/"
+					class="hover-effect large-button uppercase ff-serif text-dark bg-white"
+				>
 					Explore
-				</a>
+				</Link>
 			</div>
 		</main>
 	);

@@ -12,11 +12,11 @@ export default function Navbar() {
 	};
 
 	return (
-		<header>
-			<div>
+		<header className="primary-header flex">
+			<div style={{ width: "30px" }}>
 				<img src={logo} alt="space tourism logo" />
 			</div>
-			<button
+			{/* <button
 				onClick={toggleNavbar}
 				className="menu-icon"
 				aria-controls="primary-navigation"
@@ -24,27 +24,39 @@ export default function Navbar() {
 				<span class="sr-only" aria-expanded="false">
 					Menu
 				</span>
-			</button>
-			<nav className="navbar">
-				<ul className="primary-navigation underline-indicator">
+			</button> */}
+			<nav className="navbar ">
+				<ul className="primary-navigation flex">
 					<li>
-						<Link to="/">
+						<Link
+							to="/"
+							className="active ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator"
+						>
 							{/* the aria-hidden is so that span won't be read to the screen reader */}
 							<span aria-hidden="true">00</span>Home
 						</Link>
 					</li>
 					<li>
-						<Link to="/destination">
+						<Link
+							to="/destination"
+							className="ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator"
+						>
 							<span aria-hidden="true">01</span>Destination
 						</Link>
 					</li>
 					<li>
-						<Link to="/crew">
+						<Link
+							to="/crew"
+							className="ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator"
+						>
 							<span aria-hidden="true">02</span>Crew
 						</Link>
 					</li>
 					<li>
-						<Link to="/technology">
+						<Link
+							to="/technology"
+							className="ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator"
+						>
 							<span aria-hidden="true">03</span>Technology
 						</Link>
 					</li>

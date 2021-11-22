@@ -1,6 +1,18 @@
 @import "./Variables/variables";
+@import "./media-queries";
 
 /* general */
+
+.page-wrap {
+	// we want the hero to take up the rest of the bottom space below header
+	display: grid;
+	grid-template-rows: min-content 1fr;
+	overflow-x: hidden;
+	min-height: 100vh;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	background-size: cover;
+}
 
 .flex {
 	display: flex;
@@ -12,6 +24,10 @@
 	gap: 1rem;
 }
 
+.d-block {
+	display: block;
+}
+
 .flow > *:where(:not(:first-child)) {
 	margin-top: 1rem;
 }
@@ -20,6 +36,46 @@
 	padding-inline: 2em;
 	margin-inline: auto;
 	max-width: 80rem;
+}
+
+.grid-container {
+	text-align: center;
+	border: 1px solid limegreen;
+	display: grid;
+	place-items: center;
+	padding-inline: 1rem;
+
+	@include desktop {
+		text-align: left;
+		column-gap: 2rem;
+		// centering with grid
+		grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0px, 80rem)) minmax(
+				2rem,
+				1fr
+			);
+		// set which column they are
+		& > *:first-child {
+			grid-column: 2;
+			border: 1px solid red;
+		}
+
+		& > *:last-child {
+			grid-column: 3;
+			border: 1px solid yellow;
+		}
+	}
+}
+
+.grid-container--home {
+	@include desktop {
+		// takes bigger of the two values
+		padding-bottom: calc(max(6rem, 20vh));
+		align-items: end;
+	}
+}
+
+.grid-container * {
+	max-width: 50ch;
 }
 
 .sr-only {
@@ -87,18 +143,42 @@
 }
 .fs-800 {
 	font-size: $fs-800;
+	@include tablet {
+		font-size: $fs-800-lg;
+	}
+	@include desktop {
+		font-size: $fs-800-xlg;
+	}
 }
 .fs-700 {
 	font-size: $fs-700;
+	@include tablet {
+		font-size: $fs-700-xlg;
+	}
+	@include desktop {
+		font-size: $fs-700-xlg;
+	}
 }
 .fs-600 {
 	font-size: $fs-600;
+	@include tablet {
+		font-size: $fs-600-lg;
+	}
+	@include desktop {
+		font-size: $fs-600-xlg;
+	}
 }
 .fs-500 {
 	font-size: $fs-500;
 }
 .fs-400 {
 	font-size: $fs-400;
+	@include tablet {
+		font-size: $fs-400-lg;
+	}
+	@include desktop {
+		font-size: $fs-400-xlg;
+	}
 }
 .fs-300 {
 	font-size: $fs-300;
@@ -133,22 +213,26 @@
 /* ------------------- */
 
 .large-button {
-	display: grid;
+	font-size: 2rem;
+	display: inline-grid;
 	place-items: center;
 	padding: 0 2em;
 	border-radius: 50%;
 	aspect-ratio: 1;
 	text-decoration: none;
-	transition: all 500ms ease-in-out;
 }
 
-.hover-effect:hover,
-.hover-effect:focus {
-	box-shadow: 0px 0px 0px 2.5rem hsl(0, 0%, 100% / 0.1);
+.hover-effect {
+	transition: all 0.5s ease-out;
+
+	&:hover,
+	&:focus {
+		box-shadow: 0px 0px 0px 2.5rem hsla(0, 0%, 100%, 0.1);
+	}
 }
 
 .primary-navigation {
-	--gap: 8rem;
+	gap: 8rem;
 	list-style: none;
 	padding: 1rem 0;
 	margin: 0;
@@ -168,23 +252,24 @@
 .underline-indicator {
 	padding: 1rem 0;
 	border: 0;
-	border-bottom: 0.2rem solid rgb(255, 255, 255 / 0.5);
+	border-bottom: 0.2rem solid hsla(0, 0%, 100%, 0);
+	transition: all 0.5s ease;
 }
 
-.underline-indicators:hover,
-.underline-indicators:focus {
-	border-color: rgb(255, 255, 255 / 0.5);
+.underline-indicator:hover,
+.underline-indicator:focus {
+	border-color: hsla(0, 0%, 100%, 0.5);
 }
 
-.underline-indicators.active,
-.underline-indicators[aria-selected="true"] {
-	color: rgb(255, 255, 255 / 1);
-	border-color: rgb(255, 255, 255 / 1);
+.underline-indicator.active,
+.underline-indicator[aria-selected="true"] {
+	color: hsla(0, 0%, 100%, 1);
+	border-color: hsla(0, 0%, 100%, 1);
 }
 
-// .tab-list {
-// 	--gap: 2rem;
-// }
+.tab-list {
+	gap: 2rem;
+}
 
 .dot-indicator {
 	margin-top: 3rem;
@@ -195,16 +280,16 @@
 	border: 0;
 	border-radius: 50%;
 	padding: 0.5em;
-	background-color: rgb(255, 255, 255 / 0.25);
+	background-color: hsla(0, 0%, 100%, 0.25);
 }
 
 .dot-indicators:hover,
 .dot-indicators:focus {
-	background-color: rgb(255, 255, 255 / 0.5);
+	background-color: hsla(0, 0%, 100%, 0.5);
 }
 
 .dot-indicators[aria-selected="true"] {
-	background-color: rgb(255, 255, 255 / 1);
+	background-color: hsla(0, 0%, 100%, 1);
 }
 
 .number-selectors {
@@ -214,7 +299,7 @@
 .number-selectors > * {
 	color: $clr-white;
 	background-color: $clr-dark;
-	border: 1px solid rgb(205, 214, 249 / 0.25);
+	border: 1px solid hsla(0, 0%, 100%, 0.25);
 	aspect-ratio: 1;
 	padding: 0;
 	width: 80px;

@@ -11,7 +11,7 @@ function App() {
 	const [bg, setBG] = useState("home");
 	return (
 		<Router className="App">
-			<div className={`wrap ${bg}`}>
+			<div className={`page-wrap ${bg}`}>
 				<Header />
 				<Routes>
 					<Route path="/" element={<Home changeBG={(x) => setBG(x)} />} />
