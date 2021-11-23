@@ -1,5 +1,6 @@
-@import "./Variables/variables";
-@import "./media-queries";
+// @import "./Variables/variables";
+// @import "./media-queries";
+// @import "./navbar";
 
 /* general */
 
@@ -231,41 +232,13 @@
 	}
 }
 
-.primary-navigation {
-	gap: 8rem;
-	list-style: none;
-	padding: 1rem 0;
-	margin: 0;
-	align-items: center;
-}
-
-.primary-navigation a {
-	text-decoration: none;
-}
-
-.primary-navigation a > span {
-	font-weight: 700;
-	margin-right: 0.5em;
-}
-
-/* direct descendent just to make sure style doesn't leak out */
-.underline-indicator {
-	padding: 1rem 0;
-	border: 0;
-	border-bottom: 0.2rem solid hsla(0, 0%, 100%, 0);
-	transition: all 0.5s ease;
-}
-
-.underline-indicator:hover,
-.underline-indicator:focus {
-	border-color: hsla(0, 0%, 100%, 0.5);
-}
-
-.underline-indicator.active,
-.underline-indicator[aria-selected="true"] {
-	color: hsla(0, 0%, 100%, 1);
-	border-color: hsla(0, 0%, 100%, 1);
-}
+// .primary-navigation {
+//
+//
+//
+//
+//
+// }
 
 .tab-list {
 	gap: 2rem;

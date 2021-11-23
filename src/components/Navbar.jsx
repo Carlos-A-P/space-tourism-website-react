@@ -25,6 +25,11 @@ export default function Navbar() {
 					Menu
 				</span>
 			</button> */}
+			<button className="mobile-nav-toggle" aria-controls="primary-navigation">
+				<span aria-selected="false" className="sr-only">
+					Menu
+				</span>
+			</button>
 			<nav className="navbar ">
 				<ul className="primary-navigation flex">
 					<li>
