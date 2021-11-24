@@ -44,6 +44,7 @@
 	display: grid;
 	place-items: center;
 	padding-inline: 1rem;
+	padding-bottom: 4rem;
 
 	@include desktop {
 		text-align: left;
@@ -54,17 +55,17 @@
 				1fr
 			);
 		// set which column they are
-		& > *:first-child {
-			grid-column: 2;
-		}
+		// & > *:first-child {
+		// 	grid-column: 2;
+		// }
 
-		& > *:last-child {
-			grid-column: 3;
-		}
+		// & > *:last-child {
+		// 	grid-column: 3;
+		// }
 	}
 }
 
-.grid-container * {
+.grid-container p {
 	max-width: 51ch;
 }
 
@@ -195,6 +196,11 @@
 	// font-size: $fs-500;
 	text-transform: uppercase;
 	letter-spacing: 4.72px;
+
+	@include tablet {
+		justify-self: start;
+		margin-top: 2rem;
+	}
 }
 
 .numbered-title span {
@@ -224,12 +230,12 @@
 	background-color: hsla(0, 0%, 100%, 0.25);
 }
 
-.dot-indicators:hover,
-.dot-indicators:focus {
+.dot-indicator:hover,
+.dot-indicator:focus {
 	background-color: hsla(0, 0%, 100%, 0.5);
 }
 
-.dot-indicators[aria-selected="true"] {
+.dot-indicator[aria-selected="true"] {
 	background-color: hsla(0, 0%, 100%, 1);
 }
 
