@@ -29,7 +29,7 @@ function Destination(props) {
 						aria-selected="true"
 						role="tab"
 						aria-controls="moon-tab"
-						className="underline-indicator uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
+						className="underline-indicator uppercase ff-sans-cond text-accent  letter-spacing-2"
 						tabIndex="0"
 						data-image="moon-image"
 					>
@@ -39,7 +39,7 @@ function Destination(props) {
 						aria-selected="false"
 						role="tab"
 						aria-controls="mars-tab"
-						className="underline-indicator uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
+						className="underline-indicator uppercase ff-sans-cond text-accent  letter-spacing-2"
 						tabIndex="-1"
 						data-image="mars-image"
 					>
@@ -49,7 +49,7 @@ function Destination(props) {
 						aria-selected="false"
 						role="tab"
 						aria-controls="europa-tab"
-						className="underline-indicator uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
+						className="underline-indicator uppercase ff-sans-cond text-accent  letter-spacing-2"
 						tabIndex="-1"
 						data-image="europa-image"
 					>
@@ -59,7 +59,7 @@ function Destination(props) {
 						aria-selected="false"
 						role="tab"
 						aria-controls="titan-tab"
-						className="underline-indicator uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
+						className="underline-indicator uppercase ff-sans-cond text-accent  letter-spacing-2"
 						tabIndex="-1"
 						data-image="titan-image"
 					>

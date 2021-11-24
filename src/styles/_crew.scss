@@ -12,3 +12,35 @@
 		background-image: url(../assets/crew/background-crew-desktop.jpg);
 	}
 }
+
+main.grid-container--crew {
+	grid-template-areas: "title" "image" "selectors" "content";
+	overflow: hidden;
+
+	@include tablet {
+		grid-template-areas: "title" "content" "selectors" "image";
+	}
+
+	@include desktop {
+		justify-items: start;
+		align-content: start;
+		grid-template-areas: ". title image ." ". content image ." ". selectors image .";
+	}
+
+	.numbered-title {
+		grid-area: title;
+	}
+
+	img {
+		grid-area: image;
+		max-width: 60%;
+	}
+
+	.dot-selectors {
+		grid-area: selectors;
+	}
+
+	.crew-details {
+		grid-area: content;
+	}
+}

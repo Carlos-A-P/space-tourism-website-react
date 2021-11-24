@@ -25,10 +25,6 @@
 			letter-spacing: 4.72px;
 		}
 	}
-
-	button {
-		background: 0;
-	}
 }
 
 main.grid-container--destination {
@@ -84,6 +80,7 @@ div.destination-meta {
 	}
 }
 
+// fix this
 .grid-container--destination.flow > *:where(:not(:first-child)) {
 	margin-top: 2rem;
 }

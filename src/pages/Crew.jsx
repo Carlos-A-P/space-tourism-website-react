@@ -15,16 +15,16 @@ function Crew(props) {
 
 			<div className="flex dot-selectors">
 				<button className="dot-indicator" aria-selected="true" role="tab">
-					<span className="sr-only">Slide title</span>
+					<span className="sr-only">Commander</span>
 				</button>
 				<button className="dot-indicator" aria-selected="false" role="tab">
-					<span className="sr-only">Slide title</span>
+					<span className="sr-only">Mission specialist</span>
 				</button>
 				<button className="dot-indicator" aria-selected="false" role="tab">
-					<span className="sr-only">Slide title</span>
+					<span className="sr-only">Pilot</span>
 				</button>
 				<button className="dot-indicator" aria-selected="false" role="tab">
-					<span className="sr-only">Slide title</span>
+					<span className="sr-only">Engineer</span>
 				</button>
 			</div>
 
