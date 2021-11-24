@@ -9,12 +9,10 @@ function Destination(props) {
 	});
 	return (
 		<div className="">
-			{/* <Navbar /> */}
-			<main id="main">
-				{/* this can be a component */}
+			<main id="main" className="grid-container grid-container--destination">
 				<div className="left">
 					{/* aria hidden is so that screen readers don't have to hear the span */}
-					<h1 className="">
+					<h1 className="fs-500 numbered-title ">
 						<span aria-hidden="true">01</span> Pick your destination
 					</h1>
 
@@ -24,12 +22,16 @@ function Destination(props) {
 					</picture>
 				</div>
 				<div className="right">
-					<div className="" role="tablist" aria-label="destination list">
+					<div
+						className="tab-list flex"
+						role="tablist"
+						aria-label="destination list"
+					>
 						<button
 							aria-selected="true"
 							role="tab"
 							aria-controls="moon-tab"
-							className=""
+							className="underline-indicator uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
 							tabIndex="0"
 							data-image="moon-image"
 						>
@@ -39,7 +41,7 @@ function Destination(props) {
 							aria-selected="false"
 							role="tab"
 							aria-controls="mars-tab"
-							className=""
+							className="underline-indicator uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
 							tabIndex="-1"
 							data-image="mars-image"
 						>
@@ -49,7 +51,7 @@ function Destination(props) {
 							aria-selected="false"
 							role="tab"
 							aria-controls="europa-tab"
-							className=""
+							className="underline-indicator uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
 							tabIndex="-1"
 							data-image="europa-image"
 						>
@@ -59,7 +61,7 @@ function Destination(props) {
 							aria-selected="false"
 							role="tab"
 							aria-controls="titan-tab"
-							className=""
+							className="underline-indicator uppercase ff-sans-cond text-accent bg-dark letter-spacing-2"
 							tabIndex="-1"
 							data-image="titan-image"
 						>
@@ -68,25 +70,34 @@ function Destination(props) {
 					</div>
 
 					{/* this can be a component */}
-					{/* description */}
-					<article className="" id="moon-tab" tabIndex="0" role="tabpanel">
-						<h2 className="">Moon</h2>
+					{/* description- articles are any self-contained bit of information*/}
+					<article
+						className="destination-info"
+						id="moon-tab"
+						tabIndex="0"
+						role="tabpanel"
+					>
+						<h2 className="fs-800 ff-serif text-white letter-spacing-1 d-block uppercase">
+							Moon
+						</h2>
 
-						<p>
+						<p className="text-accent fs-400">
 							See our planet as you’ve never seen it before. A perfect relaxing
 							trip away to help regain perspective and come back refreshed.
 							While you’re there, take in some history by visiting the Luna 2
 							and Apollo 11 landing sites.
 						</p>
 
-						<div className="">
+						<div className="flex">
 							<div>
-								<h3 className="">Avg. distance</h3>
-								<p className="">384,400 km</p>
+								<h3 className="text-accent uppercase fs-200">Avg. distance</h3>
+								<p className="ff-serif fs-600 uppercase">384,400 km</p>
 							</div>
 							<div>
-								<h3 className="">Est. travel time</h3>
-								<p className="">3 days</p>
+								<h3 className="text-accent uppercase fs-200">
+									Est. travel time
+								</h3>
+								<p className="ff-serif fs-600 uppercase">3 days</p>
 							</div>
 						</div>
 					</article>

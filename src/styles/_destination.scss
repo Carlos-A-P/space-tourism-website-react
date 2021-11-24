@@ -1,0 +1,41 @@
+@use "./Variables/variables";
+@import "./media-queries";
+
+.destination {
+	background-image: url(../assets/destination/background-destination-mobile.jpg);
+
+	@include tablet {
+		background-image: url(../assets/destination/background-destination-tablet.jpg);
+		background-position: center center;
+	}
+	@include desktop {
+		background-image: url(../assets/destination/background-destination-desktop.jpg);
+	}
+
+	h1 {
+		letter-spacing: 2.7px;
+		span {
+			margin: 18px 0;
+		}
+
+		@include tablet {
+			letter-spacing: 3.38px;
+		}
+		@include desktop {
+			letter-spacing: 4.72px;
+		}
+	}
+}
+
+.grid-container--destination {
+	grid-template-areas: "title" "image" "tabs" "content";
+}
+
+.numbered-title {
+	grid-area: title;
+}
+
+.grid-container--destination img {
+	grid-area: image;
+	max-width: 100%;
+}

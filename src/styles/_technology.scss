@@ -1,0 +1,14 @@
+@use "./Variables/variables";
+@import "./media-queries";
+
+.technology {
+	background-image: url(../assets/technology/background-technology-mobile.jpg);
+
+	@include tablet {
+		background-image: url(../assets/technology/background-technology-tablet.jpg);
+		background-position: center center;
+	}
+	@include desktop {
+		background-image: url(../assets/technology/background-technology-desktop.jpg);
+	}
+}

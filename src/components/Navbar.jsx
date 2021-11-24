@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/shared/logo.svg";
-import Hamburger_Menu from "../assets/shared/icon-hamburger.svg";
-import Close_Menu from "../assets/shared/icon-close.svg";
 
 export default function Navbar() {
 	const [openLinks, setOpenLinks] = useState(false);
@@ -12,61 +10,75 @@ export default function Navbar() {
 	};
 
 	return (
-		<header className="primary-header flex">
-			<div style={{ width: "30px" }}>
-				<img src={logo} alt="space tourism logo" />
-			</div>
-			{/* <button
-				onClick={toggleNavbar}
-				className="menu-icon"
-				aria-controls="primary-navigation"
-			>
-				<span class="sr-only" aria-expanded="false">
-					Menu
-				</span>
-			</button> */}
-			<button className="mobile-nav-toggle" aria-controls="primary-navigation">
-				<span aria-selected="false" className="sr-only">
-					Menu
-				</span>
-			</button>
-			<nav className="navbar ">
-				<ul className="primary-navigation flex">
-					<li>
-						<Link
-							to="/"
-							className="active ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator"
-						>
-							{/* the aria-hidden is so that span won't be read to the screen reader */}
-							<span aria-hidden="true">00</span>Home
-						</Link>
-					</li>
-					<li>
-						<Link
-							to="/destination"
-							className="ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator"
-						>
-							<span aria-hidden="true">01</span>Destination
-						</Link>
-					</li>
-					<li>
-						<Link
-							to="/crew"
-							className="ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator"
-						>
-							<span aria-hidden="true">02</span>Crew
-						</Link>
-					</li>
-					<li>
-						<Link
-							to="/technology"
-							className="ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator"
-						>
-							<span aria-hidden="true">03</span>Technology
-						</Link>
-					</li>
-				</ul>
-			</nav>
-		</header>
+		<>
+			<a href="#main" className="skip-to-content">
+				Skip to content
+			</a>
+			<header className="primary-header flex">
+				<div>
+					<img src={logo} alt="space tourism logo" className="logo" />
+				</div>
+				<button
+					className={`mobile-nav-toggle ${openLinks ? "open" : "close"}`}
+					aria-controls="primary-navigation"
+					onClick={toggleNavbar}
+				>
+					<span aria-expanded={!openLinks} className="sr-only">
+						Menu
+					</span>
+				</button>
+				<nav className="navbar ">
+					<ul
+						className={`primary-navigation flex ${openLinks ? "hidden" : ""}`}
+					>
+						<li>
+							<NavLink
+								to="/"
+								className={`${(isActive) =>
+									isActive
+										? "active"
+										: ""} ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator`}
+							>
+								{/* the aria-hidden is so that span won't be read to the screen reader */}
+								<span aria-hidden="true">00</span>Home
+							</NavLink>
+						</li>
+						<li>
+							<NavLink
+								to="/destination"
+								className={`${(isActive) =>
+									isActive
+										? "active"
+										: ""} ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator`}
+							>
+								<span aria-hidden="true">01</span>Destination
+							</NavLink>
+						</li>
+						<li>
+							<NavLink
+								to="/crew"
+								className={`${(isActive) =>
+									isActive
+										? "active"
+										: ""} ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator`}
+							>
+								<span aria-hidden="true">02</span>Crew
+							</NavLink>
+						</li>
+						<li>
+							<NavLink
+								to="/technology"
+								className={`${(isActive) =>
+									isActive
+										? "active"
+										: ""} ff-sans-cond uppercase text-white letter-spacing-2 underline-indicator`}
+							>
+								<span aria-hidden="true">03</span>Technology
+							</NavLink>
+						</li>
+					</ul>
+				</nav>
+			</header>
+		</>
 	);
 }

@@ -14,7 +14,7 @@ function App() {
 			<div className={`page-wrap ${bg}`}>
 				<Header />
 				<Routes>
-					<Route path="/" element={<Home changeBG={(x) => setBG(x)} />} />
+					<Route index element={<Home changeBG={(x) => setBG(x)} />} />
 					<Route
 						path="/destination"
 						element={<Destination changeBG={(x) => setBG(x)} />}
