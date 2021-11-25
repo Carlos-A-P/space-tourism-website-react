@@ -25,6 +25,10 @@
 			letter-spacing: 4.72px;
 		}
 	}
+
+	button {
+		padding: 0.4rem 0;
+	}
 }
 
 main.grid-container--destination {
@@ -41,7 +45,7 @@ main.grid-container--destination {
 		grid-area: title;
 	}
 
-	img {
+	picture {
 		grid-area: image;
 		max-width: 60%;
 

@@ -33,6 +33,10 @@
 	margin-top: 1rem;
 }
 
+.flow--space-small > *:where(:not(:first-child)) {
+	margin-top: 0.75rem;
+}
+
 .container {
 	padding-inline: 2em;
 	margin-inline: auto;

@@ -11,33 +11,42 @@
 	@include desktop {
 		background-image: url(../assets/crew/background-crew-desktop.jpg);
 	}
+
+	h2 {
+		color: hsla(0, 0%, 100%, 0.5);
+	}
 }
 
 main.grid-container--crew {
-	grid-template-areas: "title" "image" "selectors" "content";
+	grid-template-areas: "title" "image" "tabs" "content";
 	overflow: hidden;
 
 	@include tablet {
-		grid-template-areas: "title" "content" "selectors" "image";
+		grid-template-areas: "title" "content" "tabs" "image";
+		padding-bottom: 0;
 	}
 
 	@include desktop {
 		justify-items: start;
 		align-content: start;
-		grid-template-areas: ". title image ." ". content image ." ". selectors image .";
+		grid-template-areas: ". title title ." ". content image ." ". tabs image .";
+
+		picture {
+			max-width: 90%;
+		}
 	}
 
 	.numbered-title {
 		grid-area: title;
 	}
 
-	img {
+	picture {
 		grid-area: image;
-		max-width: 60%;
+		border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
 	}
 
 	.dot-selectors {
-		grid-area: selectors;
+		grid-area: tabs;
 	}
 
 	.crew-details {
