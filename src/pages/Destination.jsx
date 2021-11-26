@@ -35,34 +35,44 @@ function Destination(props) {
 		props.changeBG("destination");
 	});
 
-	const myBtn = useRef(null);
+	const myBtn = useRef();
 
 	const [tabFocus, settabFocus] = useState(0);
-	console.log("before: ", tabFocus);
+
 	const keyPress = (e) => {
 		const keydownLeft = 37;
 		const keydownRight = 39;
 
-		if (e.keyCode === keydownLeft || e.keyCode === keydownRight) {
-			console.log(e.keyCode);
-			// console.log(myBtn.current);
-		}
-
 		if (e.keyCode === keydownRight) {
 			if (tabFocus < 3) {
 				settabFocus(tabFocus + 1);
+				myBtn.current.children[tabFocus + 1].focus();
+			} else {
+				settabFocus(0);
+				myBtn.current.children[0].focus();
 			}
 		}
 
 		if (e.keyCode === keydownLeft) {
 			if (tabFocus > 0) {
 				settabFocus(tabFocus - 1);
+				myBtn.current.children[tabFocus - 1].focus();
 			} else {
-				settabFocus(0);
+				settabFocus(3);
+				myBtn.current.children[3].focus();
 			}
 		}
 	};
-	console.log(tabFocus);
+
+	const [clicked, setClicked] = useState(false);
+	// toggle function
+	const toggle = (index) => {
+		if (clicked === index) {
+			return;
+		}
+		//if index wasn't clicked then set to the actual value which ends up opening it
+		setClicked(index);
+	};
 
 	return (
 		<main id="main" className="grid-container grid-container--destination flow">
@@ -84,59 +94,20 @@ function Destination(props) {
 				onKeyDown={keyPress}
 				ref={myBtn}
 			>
-				{buttonList.map(({ title, id }) => {
+				{buttonList.map((item, index) => {
 					return (
 						<button
-							key={id}
-							aria-selected={tabFocus === Number(id)}
+							key={item.id}
+							onClick={() => toggle(index)}
+							aria-selected={clicked === index ? true : false}
 							role="tab"
 							className="underline-indicator uppercase ff-sans-cond text-accent letter-spacing-2"
-							tabIndex={tabFocus === Number(id) ? "0" : "-1"}
+							tabIndex={tabFocus === Number(item.id) ? "0" : "-1"}
 						>
-							{title}
+							{item.title}
 						</button>
 					);
 				})}
-				{/* <button
-					aria-selected="true"
-					role="tab"
-					aria-controls="moon-tab"
-					className="underline-indicator uppercase ff-sans-cond text-accent  letter-spacing-2"
-					tabIndex="0"
-					data-image="moon-image"
-				>
-					Moon
-				</button>
-				<button
-					aria-selected="false"
-					role="tab"
-					aria-controls="mars-tab"
-					className="underline-indicator uppercase ff-sans-cond text-accent  letter-spacing-2"
-					tabIndex="-1"
-					data-image="mars-image"
-				>
-					Mars
-				</button>
-				<button
-					aria-selected="false"
-					role="tab"
-					aria-controls="europa-tab"
-					className="underline-indicator uppercase ff-sans-cond text-accent  letter-spacing-2"
-					tabIndex="-1"
-					data-image="europa-image"
-				>
-					Europa
-				</button>
-				<button
-					aria-selected="false"
-					role="tab"
-					aria-controls="titan-tab"
-					className="underline-indicator uppercase ff-sans-cond text-accent  letter-spacing-2"
-					tabIndex="-1"
-					data-image="titan-image"
-				>
-					Titan
-				</button> */}
 			</div>
 
 			{/* this can be a component */}
