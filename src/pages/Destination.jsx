@@ -1,12 +1,69 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // import Navbar from "../components/Navbar";
 import Moon_image from "../assets/destination/image-moon.png";
 import Moon_webp from "../assets/destination/image-moon.webp";
+
+const buttonList = [
+	{
+		title: "Moon",
+		aria_selected: true,
+		aria_controls: "moon-tab",
+		id: "0",
+	},
+	{
+		title: "Mars",
+		aria_selected: false,
+		aria_controls: "moon-tab",
+		id: "1",
+	},
+	{
+		title: "Europa",
+		aria_selected: false,
+		aria_controls: "moon-tab",
+		id: "2",
+	},
+	{
+		title: "Titan",
+		aria_selected: false,
+		aria_controls: "moon-tab",
+		id: "3",
+	},
+];
 
 function Destination(props) {
 	useEffect(() => {
 		props.changeBG("destination");
 	});
+
+	const myBtn = useRef(null);
+
+	const [tabFocus, settabFocus] = useState(0);
+	console.log("before: ", tabFocus);
+	const keyPress = (e) => {
+		const keydownLeft = 37;
+		const keydownRight = 39;
+
+		if (e.keyCode === keydownLeft || e.keyCode === keydownRight) {
+			console.log(e.keyCode);
+			// console.log(myBtn.current);
+		}
+
+		if (e.keyCode === keydownRight) {
+			if (tabFocus < 3) {
+				settabFocus(tabFocus + 1);
+			}
+		}
+
+		if (e.keyCode === keydownLeft) {
+			if (tabFocus > 0) {
+				settabFocus(tabFocus - 1);
+			} else {
+				settabFocus(0);
+			}
+		}
+	};
+	console.log(tabFocus);
+
 	return (
 		<main id="main" className="grid-container grid-container--destination flow">
 			{/* aria hidden is so that screen readers don't have to hear the span */}
@@ -15,16 +72,32 @@ function Destination(props) {
 			</h1>
 
 			<picture>
-				<source srcset={Moon_webp} type="image/webp" />
+				<source srcSet={Moon_webp} type="image/webp" />
 				<img src={Moon_image} alt="the moon" />
 			</picture>
 
 			<div
 				className="tab-list flex"
+				// the role attribute can be utilized in plain JS to querySelect this element for the tab functionality
 				role="tablist"
 				aria-label="destination list"
+				onKeyDown={keyPress}
+				ref={myBtn}
 			>
-				<button
+				{buttonList.map(({ title, id }) => {
+					return (
+						<button
+							key={id}
+							aria-selected={tabFocus === Number(id)}
+							role="tab"
+							className="underline-indicator uppercase ff-sans-cond text-accent letter-spacing-2"
+							tabIndex={tabFocus === Number(id) ? "0" : "-1"}
+						>
+							{title}
+						</button>
+					);
+				})}
+				{/* <button
 					aria-selected="true"
 					role="tab"
 					aria-controls="moon-tab"
@@ -63,7 +136,7 @@ function Destination(props) {
 					data-image="titan-image"
 				>
 					Titan
-				</button>
+				</button> */}
 			</div>
 
 			{/* this can be a component */}

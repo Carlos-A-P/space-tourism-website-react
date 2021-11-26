@@ -40,7 +40,7 @@ function Crew(props) {
 				</p>
 			</article>
 			<picture>
-				<source srcset={Douglas_webp} type="image/webp" />
+				<source srcSet={Douglas_webp} type="image/webp" />
 				<img src={Douglas_png} alt="Douglas Hurley" />
 			</picture>
 		</main>
