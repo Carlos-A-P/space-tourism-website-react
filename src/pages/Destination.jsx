@@ -10,33 +10,6 @@ import Europa_webp from "../assets/destination/image-europa.webp";
 import Titan_image from "../assets/destination/image-titan.png";
 import Titan_webp from "../assets/destination/image-titan.webp";
 
-const buttonList = [
-	{
-		title: "Moon",
-		aria_selected: true,
-		aria_controls: "moon-tab",
-		id: "0",
-	},
-	{
-		title: "Mars",
-		aria_selected: false,
-		aria_controls: "moon-tab",
-		id: "1",
-	},
-	{
-		title: "Europa",
-		aria_selected: false,
-		aria_controls: "moon-tab",
-		id: "2",
-	},
-	{
-		title: "Titan",
-		aria_selected: false,
-		aria_controls: "moon-tab",
-		id: "3",
-	},
-];
-
 function Destination(props) {
 	useEffect(() => {
 		props.changeBG("destination");
@@ -81,6 +54,7 @@ function Destination(props) {
 	const toggle = (index) => {
 		//if index wasn't clicked then set to the actual value which ends up opening it
 		setClicked(index);
+		settabFocus(index);
 		switch (index) {
 			case 0:
 				setCurrentPage("Moon");
@@ -109,7 +83,6 @@ function Destination(props) {
 			default:
 				return null;
 		}
-		// console.log(Data.destinations[clicked].name);
 	};
 
 	return (
@@ -121,7 +94,8 @@ function Destination(props) {
 
 			<picture>
 				<source srcSet={currentImage.webp} type="image/webp" />
-				<img src={currentImage.png} alt="the moon" />
+				{/* need to change alt */}
+				<img src={currentImage.png} alt={currentPage} />
 			</picture>
 
 			<div
@@ -132,17 +106,17 @@ function Destination(props) {
 				onKeyDown={keyPress}
 				ref={myBtn}
 			>
-				{buttonList.map((item, index) => {
+				{Data.destinations.map((item, index) => {
 					return (
 						<button
-							key={item.id}
+							key={index}
 							onClick={() => toggle(index)}
-							aria-selected={currentPage === item.title ? true : false}
+							aria-selected={currentPage === item.name ? true : false}
 							role="tab"
 							className="underline-indicator uppercase ff-sans-cond text-accent letter-spacing-2"
-							tabIndex={tabFocus === Number(item.id) ? "0" : "-1"}
+							tabIndex={tabFocus === index ? "0" : "-1"}
 						>
-							{item.title}
+							{item.name}
 						</button>
 					);
 				})}
