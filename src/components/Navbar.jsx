@@ -19,7 +19,7 @@ export default function Navbar() {
 					<img src={logo} alt="space tourism logo" className="logo" />
 				</div>
 				<button
-					className={`mobile-nav-toggle ${openLinks ? "open" : "close"}`}
+					className={`mobile-nav-toggle ${openLinks ? "close" : "open"}`}
 					aria-controls="primary-navigation"
 					onClick={toggleNavbar}
 				>
@@ -29,7 +29,7 @@ export default function Navbar() {
 				</button>
 				<nav className="navbar ">
 					<ul
-						className={`primary-navigation flex ${openLinks ? "hidden" : ""}`}
+						className={`primary-navigation flex ${openLinks ? "" : "hidden"}`}
 					>
 						<li>
 							<NavLink

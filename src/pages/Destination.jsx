@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 // import Navbar from "../components/Navbar";
+import Data from "../helpers/data.json";
 import Moon_image from "../assets/destination/image-moon.png";
 import Moon_webp from "../assets/destination/image-moon.webp";
+import Mars_image from "../assets/destination/image-mars.png";
+import Mars_webp from "../assets/destination/image-mars.webp";
+import Europa_image from "../assets/destination/image-europa.png";
+import Europa_webp from "../assets/destination/image-europa.webp";
+import Titan_image from "../assets/destination/image-titan.png";
+import Titan_webp from "../assets/destination/image-titan.webp";
 
 const buttonList = [
 	{
@@ -64,14 +71,45 @@ function Destination(props) {
 		}
 	};
 
-	const [clicked, setClicked] = useState(false);
+	const [currentPage, setCurrentPage] = useState("Moon");
+	const [currentImage, setCurrentImage] = useState({
+		png: Moon_image,
+		webp: Moon_webp,
+	});
+	const [clicked, setClicked] = useState(0);
 	// toggle function
 	const toggle = (index) => {
-		if (clicked === index) {
-			return;
-		}
 		//if index wasn't clicked then set to the actual value which ends up opening it
 		setClicked(index);
+		switch (index) {
+			case 0:
+				setCurrentPage("Moon");
+				setCurrentImage({ ...currentImage, png: Moon_image, webp: Moon_webp });
+				break;
+			case 1:
+				setCurrentPage("Mars");
+				setCurrentImage({ ...currentImage, png: Mars_image, webp: Mars_webp });
+				break;
+			case 2:
+				setCurrentPage("Europa");
+				setCurrentImage({
+					...currentImage,
+					png: Europa_image,
+					webp: Europa_webp,
+				});
+				break;
+			case 3:
+				setCurrentPage("Titan");
+				setCurrentImage({
+					...currentImage,
+					png: Titan_image,
+					webp: Titan_webp,
+				});
+				break;
+			default:
+				return null;
+		}
+		// console.log(Data.destinations[clicked].name);
 	};
 
 	return (
@@ -82,8 +120,8 @@ function Destination(props) {
 			</h1>
 
 			<picture>
-				<source srcSet={Moon_webp} type="image/webp" />
-				<img src={Moon_image} alt="the moon" />
+				<source srcSet={currentImage.webp} type="image/webp" />
+				<img src={currentImage.png} alt="the moon" />
 			</picture>
 
 			<div
@@ -99,7 +137,7 @@ function Destination(props) {
 						<button
 							key={item.id}
 							onClick={() => toggle(index)}
-							aria-selected={clicked === index ? true : false}
+							aria-selected={currentPage === item.title ? true : false}
 							role="tab"
 							className="underline-indicator uppercase ff-sans-cond text-accent letter-spacing-2"
 							tabIndex={tabFocus === Number(item.id) ? "0" : "-1"}
@@ -119,24 +157,25 @@ function Destination(props) {
 				role="tabpanel"
 			>
 				<h2 className="fs-800 ff-serif text-white letter-spacing-1 d-block uppercase">
-					Moon
+					{Data.destinations[clicked].name}
 				</h2>
 
 				<p className="text-accent fs-400">
-					See our planet as you’ve never seen it before. A perfect relaxing trip
-					away to help regain perspective and come back refreshed. While you’re
-					there, take in some history by visiting the Luna 2 and Apollo 11
-					landing sites.
+					{Data.destinations[clicked].description}
 				</p>
 
 				<div className="destination-meta flex">
 					<div>
 						<h3 className="text-accent uppercase fs-200">Avg. distance</h3>
-						<p className="ff-serif fs-600 uppercase">384,400 km</p>
+						<p className="ff-serif fs-600 uppercase">
+							{Data.destinations[clicked].distance}
+						</p>
 					</div>
 					<div>
 						<h3 className="text-accent uppercase fs-200">Est. travel time</h3>
-						<p className="ff-serif fs-600 uppercase">3 days</p>
+						<p className="ff-serif fs-600 uppercase">
+							{Data.destinations[clicked].travel}
+						</p>
 					</div>
 				</div>
 			</article>

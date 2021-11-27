@@ -29,6 +29,11 @@
 	button {
 		padding: 0.4rem 0;
 		cursor: pointer;
+
+		&.underline-indicator[aria-selected="true"] {
+			color: white;
+			border-color: white;
+		}
 	}
 }
 
