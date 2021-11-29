@@ -14,6 +14,7 @@ function App() {
 			<div className={`page-wrap ${bg}`}>
 				<Header />
 				<Routes>
+					{/* pass function to current page compont to set the background class */}
 					<Route index element={<Home changeBG={(x) => setBG(x)} />} />
 					<Route
 						path="/destination"

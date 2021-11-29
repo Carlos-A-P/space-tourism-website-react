@@ -23,6 +23,7 @@ export default function Navbar() {
 					aria-controls="primary-navigation"
 					onClick={toggleNavbar}
 				>
+					{/* only visible for screen readers */}
 					<span aria-expanded={!openLinks} className="sr-only">
 						Menu
 					</span>

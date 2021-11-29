@@ -1,9 +1,4 @@
-// @import "./Variables/variables";
-// @import "./media-queries";
-// @import "./navbar";
-
 /* general */
-
 .page-wrap {
 	// we want the hero to take up the rest of the bottom space below header
 	display: grid;
@@ -58,14 +53,6 @@
 				2rem,
 				1fr
 			);
-		// set which column they are
-		// & > *:first-child {
-		// 	grid-column: 2;
-		// }
-
-		// & > *:last-child {
-		// 	grid-column: 3;
-		// }
 	}
 }
 
@@ -86,13 +73,14 @@
 }
 
 /* colors */
-
 .bg-dark {
 	background-color: $clr-dark;
 }
+
 .bg-accent {
 	background-color: $clr-light;
 }
+
 .bg-white {
 	background-color: $clr-white;
 }
@@ -100,21 +88,24 @@
 .text-dark {
 	color: $clr-dark;
 }
+
 .text-accent {
 	color: $clr-light;
 }
+
 .text-white {
 	color: $clr-white;
 }
 
 /* typography */
-
 .ff-serif {
 	font-family: $ff-serif;
 }
+
 .ff-sans-cond {
 	font-family: $ff-sans-cond;
 }
+
 .ff-sans-normal {
 	font-family: $ff-sans-normal;
 }
@@ -122,9 +113,11 @@
 .letter-spacing-1 {
 	letter-spacing: 4.75px;
 }
+
 .letter-spacing-2 {
 	letter-spacing: 2.7px;
 }
+
 .letter-spacing-3 {
 	letter-spacing: 2.35px;
 }
@@ -136,6 +129,7 @@
 .fs-900 {
 	font-size: $fs-900;
 }
+
 .fs-800 {
 	font-size: $fs-800;
 	@include tablet {
@@ -145,6 +139,7 @@
 		font-size: $fs-800-xlg;
 	}
 }
+
 .fs-700 {
 	font-size: $fs-700;
 	@include tablet {
@@ -154,6 +149,7 @@
 		font-size: $fs-700-xlg;
 	}
 }
+
 .fs-600 {
 	font-size: $fs-600;
 	// @include tablet {
@@ -163,9 +159,11 @@
 	// 	font-size: $fs-600-xlg;
 	// }
 }
+
 .fs-550 {
 	font-size: $fs-300;
 }
+
 .fs-500 {
 	font-size: $fs-500;
 	@include tablet {
@@ -175,6 +173,7 @@
 		font-size: $fs-500-xlg;
 	}
 }
+
 .fs-400 {
 	font-size: $fs-400;
 	@include tablet {
@@ -184,6 +183,7 @@
 		font-size: $fs-400-xlg;
 	}
 }
+
 .fs-200 {
 	font-size: $fs-200;
 }
@@ -197,7 +197,6 @@
 
 .numbered-title {
 	font-family: $ff-sans-cond;
-	// font-size: $fs-500;
 	text-transform: uppercase;
 	letter-spacing: 2.7px;
 

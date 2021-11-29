@@ -1,70 +1,140 @@
-# Getting Started with Create React App
+# Frontend Mentor - Space tourism website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Live website -(https://space-tourism-multipage-cpwd.netlify.app/)
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [The challenge](#the-challenge)
+- [Screenshot](#screenshot)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
 
-### `npm start`
+## The challenge
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Your users should be able to:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- View the optimal layout for each of the website's pages depending on their device's screen size
+- See hover states for all interactive elements on the page
+- View each page and be able to toggle between the tabs to see new information
 
-### `npm test`
+### Built with
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React.js
+- Sass/SCSS
+- React Hooks
 
-### `npm run build`
+### What I learned
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- This is the first time I made a multi-page layout with React.js. I completed the project using react-router and react hooks. I also used the json file provided to utilize and display the information. I also focused on accessibility and made sure that the layout of my pages are accessible to both keyboard users and screen readers. I also learned a lot about using React and Sass together and found it easy to work with.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Here is some code used to create my project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- In order to display the right background image for my page, I passed down a function to the child component to pass a string and add that string into my page-wrap class
 
-### `npm run eject`
+```Javascript
+// App.jsx
+<div className={`page-wrap ${bg}`}>
+	<Header />
+    <Routes>
+        {/* pass function to current page compont to set the background class */}
+        <Route index element={<Home changeBG={(x) => setBG(x)} />} />
+        <Route
+            path="/destination"
+            element={<Destination changeBG={(x) => setBG(x)} />}
+        />
+        <Route path="/crew" element={<Crew changeBG={(x) => setBG(x)} />} />
+        <Route
+            path="/technology"
+            element={<Technology changeBG={(x) => setBG(x)} />}
+        />
+    </Routes>
+</div>
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- My child component would then pass a string back once it renders using the useEffect hook in React
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```Javascript
+function Destination(props) {
+	useEffect(() => {
+		props.changeBG("destination");
+	});
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    ///////////// code
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- In order to display and tab through my buttons with the right and left arrow key, I used the useRef hook in order to reference the parent div of my buttons. and I used the map method to display my buttons along with the names from the json file
 
-## Learn More
+```Javascript
+// reference the buttons, similar to querySelectorAll(myBtn)
+const myBtn = useRef();
+// reset the tabIndex for group to 0 and others to -1
+const [tabFocus, settabFocus] = useState(0);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const keyPress = (e) => {
+    const keydownLeft = 37;
+    const keydownRight = 39;
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    if (e.keyCode === keydownRight) {
+        if (tabFocus < 3) {
+            settabFocus(tabFocus + 1);
+            // set focus to tab or else ig outside the if statements it'll be one behind
+            myBtn.current.children[tabFocus + 1].focus();
+        } else {
+            settabFocus(0);
+            myBtn.current.children[0].focus();
+        }
+    }
 
-### Code Splitting
+    if (e.keyCode === keydownLeft) {
+        if (tabFocus > 0) {
+            settabFocus(tabFocus - 1);
+            myBtn.current.children[tabFocus - 1].focus();
+        } else {
+            settabFocus(3);
+            myBtn.current.children[3].focus();
+        }
+    }
+};
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```JavaScript
+<div
+    className="tab-list flex"
+    // the role attribute can be utilized in plain JS to querySelect this element for the tab functionality
+    role="tablist"
+    aria-label="destination list"
+    onKeyDown={keyPress}
+    ref={myBtn}
+>
+    {/*Here I map through my destination object within the json file and display the buttons of the planets*/}
+    {Data.destinations.map((item, index) => {
+        return (
+            <button
+                key={index}
+                onClick={() => toggle(index)}
+                aria-selected={tabFocus === index}
+                role="tab"
+                className="underline-indicator uppercase ff-sans-cond text-accent letter-spacing-2"
+                tabIndex={tabFocus === index ? "0" : "-1"}
+            >
+                {item.name}
+            </button>
+        );
+    })}
+</div>
+```
 
-### Analyzing the Bundle Size
+- Something that I want to improve on is writing cleaner and less code. There was a lot of code within my components that I felt were very repetitive and was wondering for a why to reuse certain pieces of code through out my components. I also want to improve on having a cleaner layout for my styling sheets and files within my folder.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Useful resources
 
-### Making a Progressive Web App
+- [Debugging JavaScript in Visual Studio Code and Google Chrome](https://www.youtube.com/watch?v=AX7uybwukkk&ab_channel=JamesQQuick) - this video taught me how to debug my javascript using the debugger tool in developer tools
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Author
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Website - [Carlos Perez](https://carlospwd.netlify.app/)
+- Frontend Mentor - [@Carlos-A-P](https://www.frontendmentor.io/profile/Carlos-A-P)
+- Twitter - [@WDCarlosP](https://www.twitter.com/WDCarlosP)

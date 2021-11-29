@@ -12,7 +12,7 @@
 }
 
 /* remove animations for people who've turned them off */
-// @media (prefers-reduced-motion) {
+// @media (prefers-reduced-motion: reduce) {
 // 	*,
 // 	*::before,
 // 	*::after {

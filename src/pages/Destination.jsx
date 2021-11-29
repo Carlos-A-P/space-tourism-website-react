@@ -14,8 +14,9 @@ function Destination(props) {
 		props.changeBG("destination");
 	});
 
+	// reference the buttons, similar to querySelectorAll(myBtn)
 	const myBtn = useRef();
-
+	// reset the tabIndex for group to 0 and others to -1
 	const [tabFocus, settabFocus] = useState(0);
 
 	const keyPress = (e) => {
@@ -25,6 +26,7 @@ function Destination(props) {
 		if (e.keyCode === keydownRight) {
 			if (tabFocus < 3) {
 				settabFocus(tabFocus + 1);
+				// set focus to tab or else ig outside the if statements it'll be one behind
 				myBtn.current.children[tabFocus + 1].focus();
 			} else {
 				settabFocus(0);
@@ -43,7 +45,6 @@ function Destination(props) {
 		}
 	};
 
-	// const [currentPage, setCurrentPage] = useState("Moon");
 	const [currentImage, setCurrentImage] = useState({
 		png: Moon_image,
 		webp: Moon_webp,
@@ -56,6 +57,7 @@ function Destination(props) {
 		//if index wasn't clicked then set to the actual value which ends up opening it
 		settabFocus(index);
 		setAnimation(true);
+		// set the timeOut so the the images doesn't change before the animation finishes
 		setTimeout(() => {
 			switch (index) {
 				case 0:
@@ -89,6 +91,7 @@ function Destination(props) {
 				default:
 					return null;
 			}
+			// return animation value to false and display content that was clicked
 			setClicked(index);
 			setAnimation(false);
 		}, 1000);
