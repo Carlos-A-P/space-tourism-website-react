@@ -19,6 +19,15 @@ Your users should be able to:
 - See hover states for all interactive elements on the page
 - View each page and be able to toggle between the tabs to see new information
 
+### Screenshot
+
+![localhost_3000_crew](https://user-images.githubusercontent.com/85038929/143960182-340822d1-9b8c-40d7-accf-d7792ec0c0e5.png)
+![localhost_3000_crew (1)](https://user-images.githubusercontent.com/85038929/143960192-89b1cba5-6aa7-4522-b695-98ce9ea94383.png)
+![localhost_3000_crew (2)](https://user-images.githubusercontent.com/85038929/143960203-eac701e5-353b-4dd8-9de3-c01a3bbe1c1f.png)
+![localhost_3000_crew (3)](https://user-images.githubusercontent.com/85038929/143960209-5e7433ce-856d-408d-bd57-1803c85514f4.png)
+
+## My process
+
 ### Built with
 
 - React.js
