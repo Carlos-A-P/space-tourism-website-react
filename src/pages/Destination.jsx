@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-// import Navbar from "../components/Navbar";
 import Data from "../helpers/data.json";
 import Moon_image from "../assets/destination/image-moon.png";
 import Moon_webp from "../assets/destination/image-moon.webp";
@@ -134,7 +133,7 @@ function Destination(props) {
 					{Data.destinations[clicked].name}
 				</h2>
 
-				<p className="text-accent fs-400">
+				<p className="page-info text-accent fs-400">
 					{Data.destinations[clicked].description}
 				</p>
 

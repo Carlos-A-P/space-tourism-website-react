@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Data from "../helpers/data.json";
 import Douglas_png from "../assets/crew/image-douglas-hurley.png";
 import Douglas_webp from "../assets/crew/image-douglas-hurley.webp";
@@ -20,7 +20,35 @@ function Crew(props) {
 		props.changeBG("crew");
 	});
 
-	console.log(Data.destinations.map((x, index) => console.log(x.name, index)));
+	// console.log(Data.destinations.map((x, index) => console.log(x.name, index)));
+	const myBtn = useRef();
+
+	const [tabFocus, settabFocus] = useState(0);
+
+	const keyPress = (e) => {
+		const keydownLeft = 37;
+		const keydownRight = 39;
+
+		if (e.keyCode === keydownRight) {
+			if (tabFocus < 3) {
+				settabFocus(tabFocus + 1);
+				myBtn.current.children[tabFocus + 1].focus();
+			} else {
+				settabFocus(0);
+				myBtn.current.children[0].focus();
+			}
+		}
+
+		if (e.keyCode === keydownLeft) {
+			if (tabFocus > 0) {
+				settabFocus(tabFocus - 1);
+				myBtn.current.children[tabFocus - 1].focus();
+			} else {
+				settabFocus(3);
+				myBtn.current.children[3].focus();
+			}
+		}
+	};
 
 	const [currentPage, setCurrentPage] = useState("Douglas Hurley");
 	const [currentImage, setCurrentImage] = useState({
@@ -32,6 +60,7 @@ function Crew(props) {
 	const toggle = (index) => {
 		//if index wasn't clicked then set to the actual value which ends up opening it
 		setClicked(index);
+		settabFocus(index);
 		switch (index) {
 			case 0:
 				setCurrentPage("Douglas Hurley");
@@ -71,7 +100,7 @@ function Crew(props) {
 				<span aria-hidden="true">02</span> Meet your crew
 			</h1>
 
-			<div className="flex dot-selectors">
+			<div className="flex dot-selectors" ref={myBtn} onKeyDown={keyPress}>
 				{Data.crew.map((x, index) => {
 					return (
 						// console.log(x.name, index)
@@ -81,14 +110,12 @@ function Crew(props) {
 							className="dot-indicator"
 							aria-selected={currentPage === x.name ? true : false}
 							role="tab"
+							tabIndex={tabFocus === index ? "0" : "-1"}
 						>
 							<span className="sr-only">{x.role}</span>
 						</button>
 					);
 				})}
-				{/* <button className="dot-indicator" aria-selected="true" role="tab">
-					<span className="sr-only">Commander</span>
-				</button>*/}
 			</div>
 
 			<article className="crew-details flow" role="tabpanel" tabIndex="0">
@@ -98,7 +125,7 @@ function Crew(props) {
 					</h2>
 					<p className="fs-700 ff-serif uppercase">{Data.crew[clicked].name}</p>
 				</header>
-				<p>{Data.crew[clicked].bio}</p>
+				<p className="page-info fs-400 text-accent">{Data.crew[clicked].bio}</p>
 			</article>
 			<picture>
 				<source srcSet={currentImage.webp} type="image/webp" />

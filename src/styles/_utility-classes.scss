@@ -69,8 +69,8 @@
 	}
 }
 
-.grid-container p {
-	max-width: 51ch;
+.page-info {
+	max-width: 459px;
 }
 
 .sr-only {
@@ -148,7 +148,7 @@
 .fs-700 {
 	font-size: $fs-700;
 	@include tablet {
-		font-size: $fs-700-xlg;
+		font-size: $fs-700-lg;
 	}
 	@include desktop {
 		font-size: $fs-700-xlg;
@@ -162,6 +162,9 @@
 	// @include desktop {
 	// 	font-size: $fs-600-xlg;
 	// }
+}
+.fs-550 {
+	font-size: $fs-300;
 }
 .fs-500 {
 	font-size: $fs-500;
@@ -181,9 +184,6 @@
 		font-size: $fs-400-xlg;
 	}
 }
-.fs-300 {
-	font-size: $fs-300;
-}
 .fs-200 {
 	font-size: $fs-200;
 }
@@ -199,11 +199,20 @@
 	font-family: $ff-sans-cond;
 	// font-size: $fs-500;
 	text-transform: uppercase;
-	letter-spacing: 4.72px;
+	letter-spacing: 2.7px;
 
 	@include tablet {
+		letter-spacing: 3.38px;
 		justify-self: start;
 		margin-top: 2rem;
+	}
+
+	@include desktop {
+		letter-spacing: 4.72px;
+	}
+
+	@media (min-width: 560px) and (max-width: 780px) {
+		margin-bottom: 1.75rem;
 	}
 }
 
@@ -244,7 +253,10 @@
 }
 
 .number-selectors {
-	flex-direction: column;
+	flex-direction: row;
+	@include desktop {
+		flex-direction: column;
+	}
 }
 
 .number-selectors > * {
@@ -253,11 +265,19 @@
 	border: 1px solid hsla(0, 0%, 100%, 0.25);
 	aspect-ratio: 1;
 	padding: 0;
-	width: 80px;
+	width: 40px;
 	border-radius: 50%;
-	font-size: 1.5em;
+	font-size: 1em;
 	font-weight: normal;
 	font-family: var(--ff-serif);
+
+	@include tablet {
+		font-size: 1.5em;
+		width: 60px;
+	}
+	@include desktop {
+		width: 80px;
+	}
 }
 
 .number-selectors [aria-selected="true"] {

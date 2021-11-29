@@ -8,7 +8,7 @@
 	color: $clr-dark;
 	padding: 0.5rem 1rem;
 	margin-inline: auto;
-	transform: translateY(-100%);
+	transform: translateY(-101%);
 	transition: transform 0.2s ease-in;
 
 	&:focus {
@@ -86,7 +86,7 @@ ul.primary-navigation {
 		}
 	}
 
-	@media (min-width: 560px) and (max-width: 770px) {
+	@media (min-width: 560px) and (max-width: 780px) {
 		padding-inline: 3rem;
 	}
 
@@ -136,7 +136,7 @@ ul.primary-navigation {
 	font-weight: 700;
 	margin-right: 0.5em;
 
-	@media (min-width: 560px) and (max-width: 770px) {
+	@media (min-width: 560px) and (max-width: 780px) {
 		display: none;
 	}
 }

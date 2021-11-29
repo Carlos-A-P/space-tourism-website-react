@@ -27,10 +27,10 @@ $fs-500-lg: 1.25rem;
 $fs-400-lg: 1rem;
 
 $fs-800-xlg: 6.25rem;
-$fs-700-xlg: 3.5rem;
+$fs-700-xlg: calc(min(calc(1.5rem + 2.5vw), 3.5rem));
 // $fs-600-xlg: 2rem;
 $fs-500-xlg: 1.75rem;
-$fs-400-xlg: 1.125rem;
+$fs-400-xlg: calc(min(calc(0.8rem + 0.5vw), 1.125rem));
 
 // @include tablet {
 

@@ -54,6 +54,7 @@ main.grid-container--destination {
 	picture {
 		grid-area: image;
 		max-width: 60%;
+		align-self: start;
 
 		@include desktop {
 			max-width: 80%;

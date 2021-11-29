@@ -38,8 +38,12 @@ body {
 
 img,
 picture {
-	max-width: 100%;
+	max-width: 73%;
 	display: block;
+	margin-inline: auto;
+	@include desktop {
+		max-width: 93%;
+	}
 }
 
 /* make form elements easier to work with */
