@@ -76,6 +76,7 @@ main.grid-container--tech {
 		align-self: start;
 		justify-self: end;
 		margin: 0;
+		transition: opacity 0.5s ease-in-out;
 	}
 
 	.number-selectors {

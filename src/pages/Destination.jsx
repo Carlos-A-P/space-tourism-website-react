@@ -43,45 +43,55 @@ function Destination(props) {
 		}
 	};
 
-	const [currentPage, setCurrentPage] = useState("Moon");
+	// const [currentPage, setCurrentPage] = useState("Moon");
 	const [currentImage, setCurrentImage] = useState({
 		png: Moon_image,
 		webp: Moon_webp,
 	});
 	const [clicked, setClicked] = useState(0);
+	const [animation, setAnimation] = useState(false);
 	// toggle function
 	const toggle = (index) => {
+		if (clicked === index) return;
 		//if index wasn't clicked then set to the actual value which ends up opening it
-		setClicked(index);
 		settabFocus(index);
-		switch (index) {
-			case 0:
-				setCurrentPage("Moon");
-				setCurrentImage({ ...currentImage, png: Moon_image, webp: Moon_webp });
-				break;
-			case 1:
-				setCurrentPage("Mars");
-				setCurrentImage({ ...currentImage, png: Mars_image, webp: Mars_webp });
-				break;
-			case 2:
-				setCurrentPage("Europa");
-				setCurrentImage({
-					...currentImage,
-					png: Europa_image,
-					webp: Europa_webp,
-				});
-				break;
-			case 3:
-				setCurrentPage("Titan");
-				setCurrentImage({
-					...currentImage,
-					png: Titan_image,
-					webp: Titan_webp,
-				});
-				break;
-			default:
-				return null;
-		}
+		setAnimation(true);
+		setTimeout(() => {
+			switch (index) {
+				case 0:
+					setCurrentImage({
+						...currentImage,
+						png: Moon_image,
+						webp: Moon_webp,
+					});
+					break;
+				case 1:
+					setCurrentImage({
+						...currentImage,
+						png: Mars_image,
+						webp: Mars_webp,
+					});
+					break;
+				case 2:
+					setCurrentImage({
+						...currentImage,
+						png: Europa_image,
+						webp: Europa_webp,
+					});
+					break;
+				case 3:
+					setCurrentImage({
+						...currentImage,
+						png: Titan_image,
+						webp: Titan_webp,
+					});
+					break;
+				default:
+					return null;
+			}
+			setClicked(index);
+			setAnimation(false);
+		}, 1000);
 	};
 
 	return (
@@ -91,10 +101,10 @@ function Destination(props) {
 				<span aria-hidden="true">01</span> Pick your destination
 			</h1>
 
-			<picture>
+			<picture style={animation ? { opacity: "0" } : null}>
 				<source srcSet={currentImage.webp} type="image/webp" />
 				{/* need to change alt */}
-				<img src={currentImage.png} alt={currentPage} />
+				<img src={currentImage.png} alt={Data.destinations[clicked].name} />
 			</picture>
 
 			<div
@@ -110,7 +120,7 @@ function Destination(props) {
 						<button
 							key={index}
 							onClick={() => toggle(index)}
-							aria-selected={currentPage === item.name ? true : false}
+							aria-selected={tabFocus === index}
 							role="tab"
 							className="underline-indicator uppercase ff-sans-cond text-accent letter-spacing-2"
 							tabIndex={tabFocus === index ? "0" : "-1"}
@@ -121,13 +131,15 @@ function Destination(props) {
 				})}
 			</div>
 
-			{/* this can be a component */}
 			{/* description- articles are any self-contained bit of information*/}
 			<article
 				className="destination-info"
 				id="moon-tab"
 				tabIndex="0"
 				role="tabpanel"
+				style={
+					animation ? { transform: "translateX(-30%)", opacity: "0" } : null
+				}
 			>
 				<h2 className="fs-800 ff-serif text-white letter-spacing-1 d-block uppercase">
 					{Data.destinations[clicked].name}

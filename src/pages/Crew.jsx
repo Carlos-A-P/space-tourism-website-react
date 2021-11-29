@@ -50,49 +50,50 @@ function Crew(props) {
 		}
 	};
 
-	const [currentPage, setCurrentPage] = useState("Douglas Hurley");
+	// const [currentPage, setCurrentPage] = useState("Douglas Hurley");
 	const [currentImage, setCurrentImage] = useState({
 		png: Douglas_png,
 		webp: Douglas_webp,
 	});
 	const [clicked, setClicked] = useState(0);
-
+	const [animation, setAnimation] = useState(false);
 	const toggle = (index) => {
-		//if index wasn't clicked then set to the actual value which ends up opening it
-		setClicked(index);
+		if (clicked === index) return;
 		settabFocus(index);
-		switch (index) {
-			case 0:
-				setCurrentPage("Douglas Hurley");
-				setCurrentImage({
-					...currentImage,
-					png: Douglas_png,
-					webp: Douglas_webp,
-				});
-				break;
-			case 1:
-				setCurrentPage("Mark Shuttleworth");
-				setCurrentImage({ ...currentImage, png: Mark_png, webp: Mark_webp });
-				break;
-			case 2:
-				setCurrentPage("Victor Glover");
-				setCurrentImage({
-					...currentImage,
-					png: Victor_png,
-					webp: Victor_webp,
-				});
-				break;
-			case 3:
-				setCurrentPage("Anousheh Ansari");
-				setCurrentImage({
-					...currentImage,
-					png: Anousheh_png,
-					webp: Anousheh_webp,
-				});
-				break;
-			default:
-				return null;
-		}
+		setAnimation(true);
+		setTimeout(() => {
+			setClicked(index);
+			switch (index) {
+				case 0:
+					setCurrentImage({
+						...currentImage,
+						png: Douglas_png,
+						webp: Douglas_webp,
+					});
+					break;
+				case 1:
+					setCurrentImage({ ...currentImage, png: Mark_png, webp: Mark_webp });
+					break;
+				case 2:
+					setCurrentImage({
+						...currentImage,
+						png: Victor_png,
+						webp: Victor_webp,
+					});
+					break;
+				case 3:
+					setCurrentImage({
+						...currentImage,
+						png: Anousheh_png,
+						webp: Anousheh_webp,
+					});
+					break;
+				default:
+					return null;
+			}
+			setClicked(index);
+			setAnimation(false);
+		}, 1000);
 	};
 	return (
 		<main id="main" className="grid-container grid-container--crew flow">
@@ -108,7 +109,7 @@ function Crew(props) {
 							key={index}
 							onClick={() => toggle(index)}
 							className="dot-indicator"
-							aria-selected={currentPage === x.name ? true : false}
+							aria-selected={tabFocus === index}
 							role="tab"
 							tabIndex={tabFocus === index ? "0" : "-1"}
 						>
@@ -118,7 +119,14 @@ function Crew(props) {
 				})}
 			</div>
 
-			<article className="crew-details flow" role="tabpanel" tabIndex="0">
+			<article
+				className="crew-details flow"
+				role="tabpanel"
+				tabIndex="0"
+				style={
+					animation ? { transform: "translateX(-30%)", opacity: "0" } : null
+				}
+			>
 				<header className=" flow--space-small">
 					<h2 className="fs-600 ff-serif uppercase">
 						{Data.crew[clicked].role}
@@ -127,7 +135,7 @@ function Crew(props) {
 				</header>
 				<p className="page-info fs-400 text-accent">{Data.crew[clicked].bio}</p>
 			</article>
-			<picture>
+			<picture style={animation ? { opacity: "0" } : null}>
 				<source srcSet={currentImage.webp} type="image/webp" />
 				<img src={currentImage.png} alt={Data.crew[clicked].role} />
 			</picture>

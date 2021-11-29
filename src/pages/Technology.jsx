@@ -12,45 +12,51 @@ function Technology(props) {
 		props.changeBG("technology");
 	});
 
-	const [currentPage, setCurrentPage] = useState("Launch vehicle");
+	const [tabFocus, settabFocus] = useState(0);
+
+	// const [currentPage, setCurrentPage] = useState("Launch vehicle");
 	const [currentImage, setCurrentImage] = useState({
 		portrait: Vehicle_portrait,
 		landscape: Vehicle_landscape,
 	});
 	const [clicked, setClicked] = useState(0);
+	const [animation, setAnimation] = useState(false);
 	// toggle function
 	const toggle = (index) => {
+		if (clicked === index) return;
 		//if index wasn't clicked then set to the actual value which ends up opening it
-		setClicked(index);
-		// settabFocus(index);
-		switch (index) {
-			case 0:
-				setCurrentPage("Launch vehicle");
-				setCurrentImage({
-					...currentImage,
-					portrait: Vehicle_portrait,
-					landscape: Vehicle_landscape,
-				});
-				break;
-			case 1:
-				setCurrentPage("Spaceport");
-				setCurrentImage({
-					...currentImage,
-					portrait: Spaceport_portrait,
-					landscape: Spaceport_landscape,
-				});
-				break;
-			case 2:
-				setCurrentPage("Space capsule");
-				setCurrentImage({
-					...currentImage,
-					portrait: Capsule_portrait,
-					landscape: Capsule_landscape,
-				});
-				break;
-			default:
-				return null;
-		}
+		settabFocus(index);
+		setAnimation(true);
+		setTimeout(() => {
+			setClicked(index);
+			switch (index) {
+				case 0:
+					setCurrentImage({
+						...currentImage,
+						portrait: Vehicle_portrait,
+						landscape: Vehicle_landscape,
+					});
+					break;
+				case 1:
+					setCurrentImage({
+						...currentImage,
+						portrait: Spaceport_portrait,
+						landscape: Spaceport_landscape,
+					});
+					break;
+				case 2:
+					setCurrentImage({
+						...currentImage,
+						portrait: Capsule_portrait,
+						landscape: Capsule_landscape,
+					});
+					break;
+				default:
+					return null;
+			}
+			setClicked(index);
+			setAnimation(false);
+		}, 1000);
 	};
 
 	return (
@@ -64,7 +70,7 @@ function Technology(props) {
 						<button
 							key={index}
 							onClick={() => toggle(index)}
-							aria-selected={currentPage === item.name ? true : false}
+							aria-selected={tabFocus === index}
 							role="tab"
 							className=""
 						>
@@ -75,7 +81,14 @@ function Technology(props) {
 				})}
 			</div>
 			{/* this can be a component */}
-			<article className="tech-details flow" role="tabpanel" tabIndex="0">
+			<article
+				className="tech-details flow"
+				role="tabpanel"
+				tabIndex="0"
+				style={
+					animation ? { transform: "translateX(-20%)", opacity: "0" } : null
+				}
+			>
 				<header>
 					<h2 className="text-accent fs-400 ff-sans-cond uppercase">
 						The Terminology...
@@ -88,16 +101,16 @@ function Technology(props) {
 					{Data.technology[clicked].description}
 				</p>
 			</article>
-			<div className="picture">
+			<div className="picture" style={animation ? { opacity: "0" } : null}>
 				<img
 					className="landscape"
 					src={currentImage.landscape}
-					alt="Launch Vehicle"
+					alt={Data.technology[clicked].name}
 				/>
 				<img
 					className="portrait"
 					src={currentImage.portrait}
-					alt="Launch Vehicle"
+					alt={Data.technology[clicked].name}
 				/>
 			</div>
 		</main>
