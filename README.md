@@ -136,7 +136,7 @@ const keyPress = (e) => {
 </div>
 ```
 
-- Something that I want to improve on is writing cleaner and less code. There was a lot of code within my components that I felt were very repetitive and was wondering for a why to reuse certain pieces of code through out my components. I also want to improve on having a cleaner layout for my styling sheets and files within my folder.
+- Something that I want to improve on is writing cleaner and less code. There was a lot of code within my components that I felt were very repetitive and was wondering for a way to reuse certain pieces of code through out my components. I also want to improve on having a cleaner layout for my styling sheets and files within my folder.
 
 ### Useful resources
 
